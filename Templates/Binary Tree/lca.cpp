@@ -40,7 +40,7 @@ public:
     
     int get_kth_ancestor(int node, int k) {
         for (; k; k -= k & -k) {
-            node = pa[node][std::__countr_zero((unsigned) k)];
+            node = pa[std::__countr_zero((unsigned) k)][node];
         }
         return node;
     }
@@ -115,7 +115,7 @@ public:
     
     int get_kth_ancestor(int node, int k) {
         for (; k; k -= k & -k) {
-            node = pa[node][std::__countr_zero((unsigned) k)];
+            node = pa[std::__countr_zero((unsigned) k)][node];
         }
         return node;
     }
