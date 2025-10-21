@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 
+// 模板来源 https://github.com/link1ks/Algorithm-template/blob/main/Templates/Binary%20Tree/lca.cpp
 // 不带权
 class TreeAncestor {
     std::vector<int> depth;
@@ -63,7 +64,7 @@ public:
     }
 };
 
-
+// 模板来源 https://github.com/link1ks/Algorithm-template/blob/main/Templates/Binary%20Tree/lca.cpp
 // 带权
 class TreeAncestor {
     std::vector<int> depth;
