@@ -54,7 +54,7 @@ public:
             return x;
         }
         for (int i = pa.size() - 1; i >= 0; i--) {
-            int px = pa[i][x], py = pa[i][x];
+            int px = pa[i][x], py = pa[i][y];
             if (px != py) {
                 x = px;
                 y = py; // 同时往上跳 2^i 步
@@ -129,7 +129,7 @@ public:
             return x;
         }
         for (int i = pa.size() - 1; i >= 0; i--) {
-            int px = pa[i][x], py = pa[i][x];
+            int px = pa[i][x], py = pa[i][y];
             if (px != py) {
                 x = px;
                 y = py; // 同时往上跳 2^i 步
