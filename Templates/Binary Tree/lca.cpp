@@ -2,11 +2,11 @@
 
 // 模板来源 https://github.com/link1ks/Algorithm-template/blob/main/Templates/Binary%20Tree/lca.cpp
 // 不带权
-class TreeAncestor {
+class LcaBinaryLifting {
     std::vector<int> depth;
     std::vector<std::vector<int>> pa;
 public:
-    TreeAncestor(std::vector<std::pair<int, int>>& edges) {
+    LcaBinaryLifting(std::vector<std::pair<int, int>>& edges) {
         int n = edges.size();
         int m = std::__bit_width((unsigned) n);
         std::vector<std::vector<int>> g(n);
@@ -62,16 +62,21 @@ public:
         }
         return pa[0][x];
     }
+
+    // 返回 x 到 y 的距离（最短路长度）
+    int get_dis(int x, int y) {
+        return depth[x] + depth[y] - depth[get_lca(x, y)] * 2;
+    }
 };
 
 // 模板来源 https://github.com/link1ks/Algorithm-template/blob/main/Templates/Binary%20Tree/lca.cpp
 // 带权
-class TreeAncestor {
+class LcaBinaryLifting {
     std::vector<int> depth;
     std::vector<long long> dis;
     std::vector<std::vector<int>> pa;
 public:
-    TreeAncestor(std::vector<std::vector<int>>& edges) {
+    LcaBinaryLifting(std::vector<std::vector<int>>& edges) {
         int n = edges.size();
         int m = std::__bit_width((unsigned) n);
         std::vector<std::vector<std::pair<int, int>>> g(n);
