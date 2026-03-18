@@ -1,0 +1,56 @@
+// 模板来源 https://leetcode.cn/circle/discuss/mOr1u6/
+template<typename T>
+class FenwickTree {
+    vector<T> tree;
+
+public:
+    // 使用下标 1 到 n
+    FenwickTree(int n) : tree(n + 1) {}
+
+    // a[i] 增加 val
+    // 1 <= i <= n
+    // 时间复杂度 O(log n)
+    void update(int i, T val) { // update就是从该下标不断更新，那么对于与它相关的区间应该是从这个下标到后面的下标
+        for (; i < tree.size(); i += i & -i) { // 取反码相当于 从 100100 => 011011
+            tree[i] += val;                    // 然后对反码 + 1 => 011100然后对之前的 i 与一下就得到最小的bit位即lowbit(100100 & 011100) 而且 反码 + 1 == -i
+        }
+    }
+
+    // 求前缀和 a[1] + ... + a[i]
+    // 1 <= i <= n
+    // 时间复杂度 O(log n)
+    T pre(int i) const {
+        T res = 0;
+        for (; i > 0; i -= i & -i) {
+            res += tree[i];
+        }
+        return res;
+    }
+
+    // 求区间和 a[l] + ... + a[r]
+    // 1 <= l <= r <= n
+    // 时间复杂度 O(log n)
+    T query(int l, int r) const {
+        if (r < l) {
+            return 0;
+        }
+        return pre(r) - pre(l - 1);
+    }
+
+    // 二分 / 倍增 求第k小
+    int get_kth(int k) {
+        int sum = 0, x = 0;
+        int n = tree.size() - 1;
+        for (int i = __lg(n); i >= 0; i--) {
+            x |= 1 << i;
+            if (x >= n || sum + tree[x] >= k) {
+                x ^= 1 << i;
+            }else {
+                sum += tree[x];
+            }
+        }
+        // 最大的满足 < k的最后一个数，+1返回第一个等于k的数
+        // 二分的思想如果x+1满足 < k 那么一定会二分到x+1
+        return x + 1;
+    }
+};
