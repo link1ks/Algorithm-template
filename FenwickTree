@@ -1,4 +1,4 @@
-// 模板来源 https://leetcode.cn/circle/discuss/mOr1u6/
+// 模板来源 https://github.com/link1ks/Algorithm-template/blob/main/FenwickTree
 template<typename T>
 class FenwickTree {
     vector<T> tree;
